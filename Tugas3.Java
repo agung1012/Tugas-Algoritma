@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Tugas3 {
+public class GajiKaryawanArray {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -8,7 +8,7 @@ public class Tugas3 {
         // ARRAY GAJI UNTUK GOLONGAN A, B, C
         long[] gajiGolongan = {5000000, 6500000, 9500000};
 
-        // ARRAY PERSEN LEMBUR (index 0 = 30%, index 1 = 32%, dst.)
+        // ARRAY PERSEN LEMBUR
         double[] persenLembur = {0.30, 0.32, 0.34, 0.36, 0.38};
 
         String golongan;
@@ -17,20 +17,23 @@ public class Tugas3 {
 
         System.out.println("=== Program Perhitungan Gaji Karyawan Menggunakan ARRAY ===");
 
-        // INPUT GOLONGAN
-        System.out.print("Masukkan Golongan (A / B / C): ");
-        golongan = input.nextLine().toUpperCase();
+        // PERULANGAN UNTUK VALIDASI INPUT GOLONGAN
+        while (true) {
+            System.out.print("Masukkan Golongan (A / B / C): ");
+            golongan = input.nextLine().toUpperCase();
 
-        // MENCARI INDEX GOLONGAN
-        if (golongan.equals("A")) {
-            indexGolongan = 0;
-        } else if (golongan.equals("B")) {
-            indexGolongan = 1;
-        } else if (golongan.equals("C")) {
-            indexGolongan = 2;
-        } else {
-            System.out.println("Golongan tidak valid!");
-            return; // hentikan program
+            if (golongan.equals("A")) {
+                indexGolongan = 0;
+                break; // keluar dari loop kalau valid
+            } else if (golongan.equals("B")) {
+                indexGolongan = 1;
+                break;
+            } else if (golongan.equals("C")) {
+                indexGolongan = 2;
+                break;
+            } else {
+                System.out.println("Golongan tidak valid! Silakan masukkan A, B, atau C.\n");
+            }
         }
 
         // MENGAMBIL GAJI POKOK DARI ARRAY
@@ -41,6 +44,8 @@ public class Tugas3 {
         jamLembur = input.nextInt();
 
         double persen;
+
+        // MENENTUKAN PERSENTASE LEMBUR
         if (jamLembur == 1) {
             persen = persenLembur[0];
         } else if (jamLembur == 2) {
@@ -61,7 +66,6 @@ public class Tugas3 {
         // HITUNG TOTAL GAJI
         long total = gajiPokok + gajiLembur;
 
-        // OUTPUT
         System.out.println("\n=== RINCIAN GAJI KARYAWAN ===");
         System.out.println("Golongan            : " + golongan);
         System.out.println("Gaji Pokok          : Rp " + gajiPokok);
